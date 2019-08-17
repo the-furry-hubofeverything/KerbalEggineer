@@ -82,27 +82,34 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToDistance(double value, int decimals = 1) {
+            value *= 1.25;
             if (Math.Abs(value) < 1000000.0) {
+                // m changed to Marten
+
                 if (Math.Abs(value) >= 10.0) {
-                    return value.ToString("N" + decimals) + "m";
+                    return value.ToString("N" + decimals) + "me";
                 }
 
-                value *= 100.0;
-                if (Math.Abs(value) >= 100.0) {
-                    return value.ToString("N" + decimals) + "cm";
+
+                // cm changed to Egg
+                value *= 25; 
+                if (Math.Abs(value) >= 30.0) {
+                    return value.ToString("N" + decimals) + "e";
                 }
 
-                value *= 10.0;
-                return value.ToString("N" + decimals) + "mm";
+                // mm changed to Yolk
+                value *= 2;
+                return value.ToString("N" + decimals) + "y";
+            } 
+            else {
+                // km changed to Habitat
+                value /= 4000;
+                if (Math.Abs(value) < 1000000.0) {
+                    return value.ToString("N" + decimals) + "he";
+                }
             }
 
-            value /= 1000.0;
-            if (Math.Abs(value) < 1000000.0) {
-                return value.ToString("N" + decimals) + "km";
-            }
 
-            value /= 1000.0;
-            return value.ToString("N" + decimals) + "Mm";
         }
 
         public static string ToFlux(double value) {
@@ -124,27 +131,32 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToMass(double value, int decimals = 0) {
+            value *= 1.305;
 
             if (value > 1 * 10e12) {
-                return value.ToString("e" + decimals + 8) + "t";
+                return value.ToString("e" + decimals + 8) + "RE^";
             }
 
             if (value >= 1000.0) {
-                return value.ToString("N" + decimals + 2) + "t";
+                return value.ToString("N" + decimals + 2) + "RE^";
             }
 
-            value *= 1000.0;
-            return value.ToString("N" + decimals) + "kg";
+            value /= 82;
+            return value.ToString("N" + decimals) + "AE^";
         }
 
         public static string ToMass(double value1, double value2, int decimals = 0) {
+            // t to Roadster
+            value1 *= 1.305;
+            value2 *= 1.305;
             if (value1 >= 1000.0f || value2 >= 1000.0f) {
-                return value1.ToString("N" + decimals + 2) + " / " + value2.ToString("N" + decimals + 2) + "t";
+                return value1.ToString("N" + decimals + 2) + " / " + value2.ToString("N" + decimals + 2) + "RE^";
             }
 
-            value1 *= 1000.0;
-            value2 *= 1000.0;
-            return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "kg";
+            // kg to Absolute Unit (AE^)
+            value1 /= 82;
+            value2 /= 82;
+            return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "AE^";
         }
 
         public static string ToPercent(double value, int decimals = 2) {
@@ -162,20 +174,28 @@ namespace KerbalEngineer.Helpers {
 
         public static string ToSpeed(double value, int decimals = 2) {
             if (Math.Abs(value) < 1.0) {
-                return (value * 1000.0).ToString("N" + decimals) + "mm/s";
+                // mm/s to Habitat/Egg
+                return (value / 0.00231481).ToString("N" + decimals) + "he/E";
             }
-            return value.ToString("N" + decimals) + "m/s";
+            // m/s to Habitat/Cook an Egg
+            value *= 0.47619;
+            return value.ToString("N" + decimals) + "he/CoE";
         }
 
+        // Temps to Egg
         public static string ToTemperature(double value) {
-            return value.ToString("#,0") + "K";
+            value /= 310.9278;
+            return value.ToString("#,0") + "Ee(k)";
         }
 
         public static string ToTemperature(double value1, double value2) {
-            return value1.ToString("#,0") + " / " + value2.ToString("#,0") + "K";
+            value1 /= 310.9278
+            value2 /= 310.9278
+            return value1.ToString("#,0") + " / " + value2.ToString("#,0") + "Ee(k)";
         }
 
         public static string ToTime(double value) {
+            // TODO
             return TimeFormatter.ConvertToString(value);
         }
 
