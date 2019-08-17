@@ -100,16 +100,10 @@ namespace KerbalEngineer.Helpers {
                 // mm changed to Yolk
                 value *= 2;
                 return value.ToString("N" + decimals) + "y";
-            } 
-            else {
-                // km changed to Habitat
-                value /= 4000;
-                if (Math.Abs(value) < 1000000.0) {
-                    return value.ToString("N" + decimals) + "he";
-                }
             }
-
-
+            // km changed to Habitat
+            value /= 4000;
+            return value.ToString("N" + decimals) + "he";
         }
 
         public static string ToFlux(double value) {
@@ -189,8 +183,8 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToTemperature(double value1, double value2) {
-            value1 /= 310.9278
-            value2 /= 310.9278
+            value1 /= 310.9278;
+            value2 /= 310.9278;
             return value1.ToString("#,0") + " / " + value2.ToString("#,0") + "Ee(k)";
         }
 

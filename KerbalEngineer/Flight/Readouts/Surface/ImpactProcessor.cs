@@ -89,7 +89,8 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
         #region IUpdatable Members
 
 
-        public void Update() {
+        void IUpdatable.Update()
+        {
 
             if (FlightEngineerCore.gamePaused)
                 return;
@@ -117,13 +118,15 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
             if (vessel.Landed || body.pqsController == null)
                 return;
 
-            if (vessel.orbit.PeA >= body.minOrbitalDistance) {
+            if (vessel.orbit.PeA >= body.minOrbitalDistance)
+            {
                 //periapsis must be lower min dist;
                 if (debugImpact) Debug.Log("no impact: periapse > min alt " + vessel.orbit.PeA + body.minOrbitalDistance);
                 return;
             }
 
-            if ((vessel.orbit.eccentricity >= 1) && (vessel.orbit.timeToPe <= 0)) {
+            if ((vessel.orbit.eccentricity >= 1) && (vessel.orbit.timeToPe <= 0))
+            {
                 //if currently escaping, we still need to be before periapsis
                 if (debugImpact) Debug.Log("no impact: escaping and passed periapse");
                 return;
@@ -158,7 +161,8 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
 
             double endangle = startangle + 360;
 
-            if (vessel.orbit.PeR <= body.Radius) { //only search down to sea level.
+            if (vessel.orbit.PeR <= body.Radius)
+            { //only search down to sea level.
                 double costheta = a / r / e - a * e / r - 1 / e;
 
                 if (costheta < -1d)
@@ -195,11 +199,13 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
             if (debugImpact) Debug.Log("Impact pre " + side + " " + startangle + ">" + endangle + " " + interval + " " + terrainAltitude);
             bool ok = false;
 
-            do {
+            do
+            {
                 ok = false;
                 it += 1;
                 //-164 + 1.8*-1 ; -165 > -147
-                for (impacttheta = startangle + interval * side; side == 1 ? impacttheta <= endangle : impacttheta >= endangle; impacttheta += interval * side) {
+                for (impacttheta = startangle + interval * side; side == 1 ? impacttheta <= endangle : impacttheta >= endangle; impacttheta += interval * side)
+                {
                     itf += 1;
                     double tARads = Math.PI * impacttheta / 180;
                     futurepos = vessel.orbit.getRelativePositionFromTrueAnomaly(tARads); //this.RadiusDirection(impacttheta);
@@ -229,7 +235,8 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
 
                     double shipalt = futurepos.magnitude - body.Radius;
 
-                    if ((terrainAltitude < 0) && body.ocean) {
+                    if ((terrainAltitude < 0) && body.ocean)
+                    {
                         terrainAltitude = 0; //sploosh.
                     }
 
@@ -237,7 +244,8 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
 
                     if (debugImpact) Debug.Log("Impact iteration " + currentpos + " " + futurepos + " " + side + " " + startangle + ">" + endangle + " " + impacttheta + " " + interval + " " + shipalt + " " + terrainAltitude + " " + delta);
 
-                    if ((side * delta < 0)) {
+                    if ((side * delta < 0))
+                    {
                         impactHappening = true;
                         side *= -1;
                         startangle = impacttheta;
@@ -247,7 +255,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
                         if (debugImpact) Debug.Log("Impact Switch! " + startangle + " > " + endangle + " " + interval);
                         ok = true;
                         break;
-                    } else if (delta == 0) { //i guess it could happen.
+                    }
+                    else if (delta == 0)
+                    { //i guess it could happen.
                         if (debugImpact) Debug.Log("Impact Zero! " + startangle + " > " + endangle + " " + interval);
                         impactHappening = true;
                         interval = 0;
@@ -257,26 +267,31 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
 
                 }
 
-                if (!ok) {
+                if (!ok)
+                {
                     if (debugImpact) Debug.Log("bad loop");
                     break;
                 }
 
             } while (interval > 0.00001 && impactHappening && it < 36);
 
-            if (debugImpact) Debug.Log("Impact calc! iterations " + impactHappening + " " + it + " " + itf );
+            if (debugImpact) Debug.Log("Impact calc! iterations " + impactHappening + " " + it + " " + itf);
 
-            if (impactHappening) {
+            if (impactHappening)
+            {
                 ShowDetails = true;
                 Time = impactTime;
                 Longitude = impactLongitude;
                 Latitude = impactLatitude;
                 Altitude = terrainAltitude;
 
-                try {
+                try
+                {
                     Biome = ScienceUtil.GetExperimentBiome(body, impactLatitude, impactLongitude);
                     Biome = ScienceUtil.GetBiomedisplayName(body, Biome);
-                } catch (Exception ex) { //this gets spammy with misbehaving mod planets.
+                }
+                catch (Exception)
+                { //this gets spammy with misbehaving mod planets.
                     Biome = "<failed>";
                 }
 
@@ -285,7 +300,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
 
                 bool debugBurn = false;
 
-                if (m_Acceleration == 0 || m_Acceleration < m_Gravity) {
+                double EPSILON = 0;
+                if (Math.Abs(m_Acceleration) < EPSILON || m_Acceleration < m_Gravity)
+                {
                     //lol u dead, boy
                     if (debugBurn) Debug.Log("insuffucuent thrust " + m_Acceleration);
                     return;
@@ -301,7 +318,8 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
 
                 int iterations = 0;
 
-                if (brakingDist < shipalt) { //only search if it's actually possible to stop.
+                if (brakingDist < shipalt)
+                { //only search if it's actually possible to stop.
                     double tstart = 0;
                     double tend = Time;
                     double lastt = 0;
@@ -310,11 +328,13 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
                     Vector3d srf = new Vector3d();
                     double bdist = 0;
 
-                    do { //dat binary search doe. Is there a closed form solution to this? idk. brute force!
+                    do
+                    { //dat binary search doe. Is there a closed form solution to this? idk. brute force!
                         iterations++;
                         double t = tstart + (tend - tstart) / 2;
 
-                        if (Math.Abs(lastt - t) < 0.05) {
+                        if (Math.Abs(lastt - t) < 0.05)
+                        {
                             if (debugBurn) getBrakingDistanceForDT(vessel, lastt, body, out shipalt, out btime, out srf, true);
                             break; //that should be quite enough, tyvm.
                         }
@@ -323,8 +343,10 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
 
                         bdist = getBrakingDistanceForDT(vessel, t, body, out shipalt, out btime, out srf, false);
 
-                        if (bdist <= shipalt) {
-                            if (shipalt - bdist < brakedelta ) {
+                        if (bdist <= shipalt)
+                        {
+                            if (shipalt - bdist < brakedelta)
+                            {
                                 brakedelta = shipalt - bdist;
                                 brakingDist = bdist;
                                 burnTime = btime;
@@ -333,14 +355,18 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
                             tstart = t; //search forward.
                             if (debugBurn) Debug.Log("forward: t " + t + " shipalt " + shipalt + " srf " + srf + " bdist " + bdist);
 
-                        } else {
+                        }
+                        else
+                        {
                             tend = t; //search backwards.
-                           if (debugBurn) Debug.Log("backward: t " + t + " shipalt " + shipalt + " srf " + srf + " bdist " + bdist);
+                            if (debugBurn) Debug.Log("backward: t " + t + " shipalt " + shipalt + " srf " + srf + " bdist " + bdist);
                         }
 
 
                     } while (true);
-                } else {
+                }
+                else
+                {
                     if (debugBurn) Debug.Log("Can't stop, won't stop. srf:" + srfb + " " + shipalt);
                 }
 
@@ -382,7 +408,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
                 if (debugBurn) Debug.Log("dist debug eburn " + Eburn + " eship " + EShip + " ch " + chord + " dt " + dTheta + " rc " + Rc);
 
 
-            } else {
+            }
+            else
+            {
                 ShowDetails = false;
             }
         }

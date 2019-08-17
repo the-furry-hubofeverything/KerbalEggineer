@@ -212,7 +212,7 @@ namespace KerbalEngineer.Editor
                 }
 
                 // Change the window title based on whether in compact mode or not.
-                title = !compactMode ? "KERBAL ENGINEER REDUX " + EngineerGlobals.ASSEMBLY_VERSION : "K.E.R. " + EngineerGlobals.ASSEMBLY_VERSION;
+                title = !compactMode ? "KERBAL EggINEER REDUX " + EngineerGlobals.ASSEMBLY_VERSION : "K.E.R. " + EngineerGlobals.ASSEMBLY_VERSION;
 
                 // Reset the window size when the staging or something else has changed.
                 stagesLength = stages.Length;
