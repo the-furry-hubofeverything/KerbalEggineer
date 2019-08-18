@@ -135,7 +135,7 @@ namespace KerbalEngineer.Helpers {
                 return value.ToString("N" + decimals + 2) + "RE^";
             }
 
-            value /= 82;
+            value *= 82;
             return value.ToString("N" + decimals) + "AE^";
         }
 
@@ -148,8 +148,8 @@ namespace KerbalEngineer.Helpers {
             }
 
             // kg to Absolute Unit (AE^)
-            value1 /= 82;
-            value2 /= 82;
+            value1 *= 82;
+            value2 *= 82;
             return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "AE^";
         }
 
@@ -178,14 +178,17 @@ namespace KerbalEngineer.Helpers {
 
         // Temps to Egg
         public static string ToTemperature(double value) {
-            value /= 310.9278;
-            return value.ToString("#,0") + "Ee(k)";
+            value /= 37.7778;
+            value += 7.23043692327;
+            return value.ToString("#,2") + "Ee(k)";
         }
 
         public static string ToTemperature(double value1, double value2) {
-            value1 /= 310.9278;
-            value2 /= 310.9278;
-            return value1.ToString("#,0") + " / " + value2.ToString("#,0") + "Ee(k)";
+            value1 /= 37.7778;
+            value1 += 7.23043692327;
+            value2 /= 37.7778;
+            value2 += 7.23043692327;
+            return value1.ToString("#.#,0") + " / " + value2.ToString("#.#,0") + "Ee(k)";
         }
 
         public static string ToTime(double value) {

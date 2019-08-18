@@ -53,7 +53,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
             double oneovera = (orbit.eccentricity == 1) ? 0 : (1 / orbit.semiMajorAxis);
             double speedsqr = orbit.referenceBody.gravParameter * ((2 / orbit.PeR) - oneovera);
             if (Double.IsNaN(speedsqr) || speedsqr < 0)
-                str = "---m/s";
+                str = "---he/CoE";
             else
                 str = Math.Sqrt(speedsqr).ToSpeed();
             this.DrawLine(str, section.IsHud);

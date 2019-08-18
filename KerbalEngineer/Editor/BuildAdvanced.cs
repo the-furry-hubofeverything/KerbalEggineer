@@ -448,7 +448,7 @@ namespace KerbalEngineer.Editor
                 stage = stages[i];
                 if (showAllStages || stage.deltaV > 0.0)
                 {
-                    GUILayout.Label(stage.deltaV.ToString("N0") + " / " + stage.inverseTotalDeltaV.ToString("N0") + "m/s", infoStyle);
+                    GUILayout.Label(stage.deltaV.ToString("N0") + " / " + (stage.inverseTotalDeltaV * 0.47619).ToString("N0") + "he/CoE", infoStyle);
                 }
             }
             GUILayout.EndVertical();
@@ -530,26 +530,26 @@ namespace KerbalEngineer.Editor
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Build Engineer Overlay:", settingStyle);
+            GUILayout.Label("Build Eggineer Overlay:", settingStyle);
             BuildOverlay.Visible = GUILayout.Toggle(BuildOverlay.Visible, "VISIBLE", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             BuildOverlayPartInfo.NamesOnly = GUILayout.Toggle(BuildOverlayPartInfo.NamesOnly, "NAMES ONLY", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             BuildOverlayPartInfo.ClickToOpen = GUILayout.Toggle(BuildOverlayPartInfo.ClickToOpen, "CLICK TO OPEN", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Flight Engineer activation mode:", settingStyle);
+            GUILayout.Label("Flight Eggineer activation mode:", settingStyle);
             FlightEngineerCore.IsCareerMode = GUILayout.Toggle(FlightEngineerCore.IsCareerMode, "CAREER", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             FlightEngineerCore.IsCareerMode = !GUILayout.Toggle(!FlightEngineerCore.IsCareerMode, "PARTLESS", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Flight Engineer Career Limitations:", settingStyle);
+            GUILayout.Label("Flight Eggineer Career Limitations:", settingStyle);
             FlightEngineerCore.IsKerbalLimited = GUILayout.Toggle(FlightEngineerCore.IsKerbalLimited, "KERBAL", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             FlightEngineerCore.IsTrackingStationLimited = GUILayout.Toggle(FlightEngineerCore.IsTrackingStationLimited, "TRACKING", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Flight Engineer Toolbar Icon:", settingStyle);
+            GUILayout.Label("Flight Eggineer Toolbar Icon:", settingStyle);
             FlightAppLauncher.IsHoverActivated = GUILayout.Toggle(FlightAppLauncher.IsHoverActivated, "MOUSE HOVER", buttonStyle, GUILayout.Width(125.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
