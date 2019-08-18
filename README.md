@@ -2,7 +2,7 @@
 
 KER is a mod for Kerbal Space Program with tools for viewing important statistics about your ship and it's orbit during both flight, building and in the tracking station.
 
-This is a fork of KER which modifies the units of measurement from the Metric System to the Scarf Measuregg System. It is a joke measurement system that my friends and I made made. The specifications are [here](https://docs.google.com/spreadsheets/d/13BTqFjmOqqpowEPLutmaMUaiM1yZx6HKqyBZ9Il29Xw/edit?usp=sharing).
+This is a fork of KER which modifies the units of measurement from the Metric System to the Scarf Measuregg System. It is a joke measurement system that my friends and I made. The specifications are [here](https://docs.google.com/spreadsheets/d/13BTqFjmOqqpowEPLutmaMUaiM1yZx6HKqyBZ9Il29Xw/edit?usp=sharing).
 
 ## Download
 
