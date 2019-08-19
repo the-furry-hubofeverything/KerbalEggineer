@@ -2,11 +2,21 @@
 
 KER is a mod for Kerbal Space Program with tools for viewing important statistics about your ship and it's orbit during both flight, building and in the tracking station.
 
+One small step for a ~~Wolverine~~ Tank Weasel, one giant leap for Furry-kind.
+
+We, the furries, have invaded Kerbin and has taken over their International Organization for Standardization! 
+  
+Our local astronaut, [Hiyu](https://www.youtube.com/channel/UCDPjn46_5GEae2BAuMh6nAQ) the Pine Marten, inspired the new International Furganization for Furrylization to create a new measurement... or rather, **measuregg** system.
+
+Introducing, the Scarf Measuregg System. The entire system is based on eggs. Because eggs are the best, no argument required.
+
 This is a fork of KER which modifies the units of measurement from the Metric System to the Scarf Measuregg System. It is a joke measurement system that my friends and I made. The specifications are [here](https://docs.google.com/spreadsheets/d/13BTqFjmOqqpowEPLutmaMUaiM1yZx6HKqyBZ9Il29Xw/edit?usp=sharing).
 
 ## Download
 
 These links direct you to the forked versions, please click [here](https://github.com/jrbudda/KerbalEngineer/releases) to download the original.
+
+The Output folder will always have the compiles for the latest commit.
 
 [Latest release](https://github.com/the-furry-hubofeverything/KerbalEggineer/releases/latest)
 
