@@ -82,7 +82,7 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToDistance(double value, int decimals = 1) {
-            value *= 1.25;
+            value /= 1.25;
             if (Math.Abs(value) < 1000000.0) {
                 // m changed to Marten
 
@@ -125,7 +125,7 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToMass(double value, int decimals = 0) {
-            value *= 0.695;
+            value /= 1.305;
 
             if (value > 1 * 10e12) {
                 return value.ToString("e" + decimals + 8) + "RE^";
@@ -141,8 +141,8 @@ namespace KerbalEngineer.Helpers {
 
         public static string ToMass(double value1, double value2, int decimals = 0) {
             // t to Roadster
-            value1 *= 0.695;
-            value2 *= 0.695;
+            value1 /= 1.305;
+            value2 /= 1.305;
             // kg to Absolute Unit (AE^)
             if (value1 <= 1.0f || value2 <= 1.0f)
             {
