@@ -125,32 +125,34 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToMass(double value, int decimals = 0) {
-            value *= 1.305;
+            value *= 0.695;
 
             if (value > 1 * 10e12) {
                 return value.ToString("e" + decimals + 8) + "RE^";
             }
 
-            if (value >= 1000.0) {
-                return value.ToString("N" + decimals + 2) + "RE^";
+            if (value <= 1.0) {
+                value *= 82;
+                return value.ToString("N" + decimals) + "AE^";
             }
 
-            value *= 82;
-            return value.ToString("N" + decimals) + "AE^";
+            return value.ToString("N" + decimals + 2) + "RE^";
         }
 
         public static string ToMass(double value1, double value2, int decimals = 0) {
             // t to Roadster
-            value1 *= 1.305;
-            value2 *= 1.305;
-            if (value1 >= 1000.0f || value2 >= 1000.0f) {
-                return value1.ToString("N" + decimals + 2) + " / " + value2.ToString("N" + decimals + 2) + "RE^";
-            }
-
+            value1 *= 0.695;
+            value2 *= 0.695;
             // kg to Absolute Unit (AE^)
-            value1 *= 82;
-            value2 *= 82;
-            return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "AE^";
+            if (value1 <= 1.0f || value2 <= 1.0f)
+            {
+                value1 *= 15.91463;
+                value2 *= 15.91463;
+                return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "AE^";
+            }
+            return value1.ToString("N" + decimals + 2) + " / " + value2.ToString("N" + decimals + 2) + "RE^";
+
+
         }
 
         public static string ToPercent(double value, int decimals = 2) {
@@ -192,7 +194,6 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToTime(double value) {
-            // TODO
             return TimeFormatter.ConvertToString(value);
         }
 

@@ -23,44 +23,47 @@ namespace KerbalEngineer.Helpers
     {
         public static string ConvertToString(double seconds, string format = "F1")
         {
+
+            // time now in Scarf Mesuregg System
             int years = 0;
-            int days = 0;
-            int hours = 0;
-            int minutes = 0;
+            int incubate = 0;
+            int lay = 0;
+            int cook= 0;
 
             bool negative = seconds < 0;
 
             seconds = Math.Abs(seconds);
+
 
             if (seconds > 0.0)
             {
                 years = (int)(seconds / KSPUtil.dateTimeFormatter.Year);
                 seconds -= years * KSPUtil.dateTimeFormatter.Year;
 
-                days = (int)(seconds / KSPUtil.dateTimeFormatter.Day);
-                seconds -= days * KSPUtil.dateTimeFormatter.Day;
+                incubate = (int)(seconds / 1814400);
+                seconds -= incubate * 1814400;
 
-                hours = (int)(seconds / 3600.0);
-                seconds -= hours * 3600.0;
+                lay = (int)(seconds / 86400);
+                seconds -= lay * 86400;
 
-                minutes = (int)(seconds / 60.0);
-                seconds -= minutes * 60.0;
+                cook = (int)(seconds / 420);
+                seconds -= cook * 420;
             }
 
             if (years > 0)
             {
-                return (negative ? "-" : "") + string.Format("{0}y {1}d {2}h {3}m {4}s", years, days, hours, minutes, seconds.ToString(format));
+                return (negative ? "-" : "") + string.Format("{0}y {1}IE {2}E {3}CoE {4}CE", years, incubate, lay, cook, seconds.ToString(format));
             }
-            if (days > 0)
+            if (incubate > 0)
             {
-                return (negative ? "-" : "") + string.Format("{0}d {1}h {2}m {3}s", days, hours, minutes, seconds.ToString(format));
+                return (negative ? "-" : "") + string.Format("{0}IE {1}E {2}CoE {3}CE", incubate, lay, cook, seconds.ToString(format));
             }
-            if (hours > 0)
+            if (lay > 0)
             {
-                return (negative ? "-" : "") + string.Format("{0}h {1}m {2}s", hours, minutes, seconds.ToString(format));
+                return (negative ? "-" : "") + string.Format("{0}E {1}CoE {2}CE", lay, cook, seconds.ToString(format));
             }
-
-            return (negative ? "-" : "") + (minutes > 0 ? string.Format("{0}m {1}s", minutes, seconds.ToString(format)) : string.Format("{0}s", seconds.ToString(format)));
+            return (negative ? "-" : "") + (cook > 0 ? string.Format("{0}CoE {1}CE", cook, seconds.ToString(format)) : string.Format("{0}CE", seconds.ToString(format)));
+         
         }
     }
 }
