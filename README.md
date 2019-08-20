@@ -1,5 +1,7 @@
 # Kerbal Eggineer Redux
 
+#### This is a joke mod, don't take this seriously
+
 KER is a mod for Kerbal Space Program with tools for viewing important statistics about your ship and it's orbit during both flight, building and in the tracking station.
 
 One small step for a ~~Wolverine~~ Tank Weasel, one giant leap for Furry-kind.
@@ -32,4 +34,5 @@ The Output folder will always have the compiles for the latest commit.
 
 [CYBUTEK](https://github.com/CYBUTEK), the original developer of KER  
 [jrbudda](https://github.com/jrbudda), the person who is still maintaining KER  
-The people on the [Escape Velocity Discord Server](https://discordapp.com/invite/ufs7BPs), notably Blaszar, Vegard Sabre, Kman, and AtomicJay
+The people on the [Escape Velocity Discord Server](https://discordapp.com/invite/ufs7BPs), notably Blaszar, Vegard Sabre, Kman, and AtomicJay  
+[the-furry-hubofeverything](https://github.com/the-furry-hubofeverything/), for modifying this mod to this, its hilarious **-post-rex**  

@@ -212,7 +212,7 @@ namespace KerbalEngineer.Editor
                 }
 
                 // Change the window title based on whether in compact mode or not.
-                title = !compactMode ? "KERBAL EggINEER REDUX " + EngineerGlobals.ASSEMBLY_VERSION : "K.E.R. " + EngineerGlobals.ASSEMBLY_VERSION;
+                title = !compactMode ? "KERBAL EGGINEER REDUX " + EngineerGlobals.ASSEMBLY_VERSION : "K.E.R. " + EngineerGlobals.ASSEMBLY_VERSION;
 
                 // Reset the window size when the staging or something else has changed.
                 stagesLength = stages.Length;
@@ -448,7 +448,7 @@ namespace KerbalEngineer.Editor
                 stage = stages[i];
                 if (showAllStages || stage.deltaV > 0.0)
                 {
-                    GUILayout.Label(stage.deltaV.ToString("N0") + " / " + (stage.inverseTotalDeltaV * 0.47619).ToString("N0") + "he/CoE", infoStyle);
+                    GUILayout.Label(stage.deltaV.ToString("N0") + " / " + (EggConverter.ConvertDeltaV(stage.inverseTotalDeltaV)).ToString("N0") + EggConverter.DeltaV, infoStyle);
                 }
             }
             GUILayout.EndVertical();
