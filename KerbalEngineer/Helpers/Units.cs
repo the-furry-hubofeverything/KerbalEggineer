@@ -105,24 +105,11 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToMass(double value, int decimals = 0) {
-            if (value > 1 * 10e12) {
-                return value.ToString("e" + decimals + 8) + "t";
-            }
-
-            if (value >= 1000.0) {
-                return value.ToString("N" + decimals + 2) + "t";
-            }
-
-            return value.ToString("N" + decimals) + "kg";
+            return EggConverter.ToMass(value, decimals);
         }
 
         public static string ToMass(double value1, double value2, int decimals = 0) {
-            if (value1 >= 1000.0f || value2 >= 1000.0f) {
-                return value1.ToString("N" + decimals + 2) + " / " + value2.ToString("N" + decimals + 2) + "t";
-            }
-            value1 *= 1000.0;
-            value2 *= 1000.0;
-            return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "kg";
+            return EggConverter.ToMass(value1, value2, decimals);
         }
 
         public static string ToPercent(double value, int decimals = 2) {
@@ -144,11 +131,11 @@ namespace KerbalEngineer.Helpers {
 
         // Temps to Egg
         public static string ToTemperature(double value) {
-            return value.ToString("#,0") + "K";
+            return EggConverter.ToTemperature(value);
         }
 
         public static string ToTemperature(double value1, double value2) {
-            return value1.ToString("#,0") + " / " + value2.ToString("#,0") + "K";
+            return EggConverter.ToTemperature(value1, value2);
         }
 
         public static string ToTime(double value) {
