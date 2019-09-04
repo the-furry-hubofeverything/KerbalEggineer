@@ -1,10 +1,8 @@
 # Kerbal Eggineer Redux
 
-#### This is a joke mod, don't take this seriously
+#### This is a joke mod, don't take this seriously ;)
 
 KER is a mod for Kerbal Space Program with tools for viewing important statistics about your ship and it's orbit during both flight, building and in the tracking station.
-
-One small step for a ~~Wolverine~~ Tank Weasel, one giant leap for Furry-kind.
 
 We, the furries, have invaded Kerbin and has taken over their International Organization for Standardization! 
   
