@@ -81,7 +81,7 @@ namespace KerbalEngineer
 
         public static string ToTemperature(double value)
         {
-            // Kelvin to Celcius conversion
+            // Kelvin to Celsius conversion
             value -= 273.15;
 
             value = Math.Pow(value * (9.0 / 5) + 32, 1.0 / 3) * Math.Abs(value * (9.0 / 5) + 32);
