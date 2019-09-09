@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         {
             if (SimulationProcessor.ShowDetails)
             {
-                this.DrawLine((SimulationProcessor.LastStage.RCSdeltaVStart * 0.47619).ToString("N0") + "he/CoE (" + TimeFormatter.ConvertToString(SimulationProcessor.LastStage.RCSBurnTime) + ")", section.IsHud);
+                this.DrawLine(EggConverter.ConvertDeltaV(SimulationProcessor.LastStage.RCSdeltaVStart).ToString("N0") + EggConverter.DeltaV + " (" + TimeFormatter.ConvertToString(SimulationProcessor.LastStage.RCSBurnTime) + ")", section.IsHud);
 
             }
         }

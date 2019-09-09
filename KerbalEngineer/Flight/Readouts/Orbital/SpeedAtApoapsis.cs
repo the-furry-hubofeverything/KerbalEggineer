@@ -51,12 +51,12 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
             String str;
             Orbit orbit = FlightGlobals.ship_orbit;
             if (orbit.eccentricity > 1.0)
-                str = "---he/CoE";
+                str = "---" + EggConverter.DeltaV;
             else
             {
                 double speedsqr = orbit.referenceBody.gravParameter * ((2 / orbit.ApR) - (1 / orbit.semiMajorAxis));
                 if (Double.IsNaN(speedsqr) || speedsqr < 0)
-                    str = "---he/CoE";     // Don't think this is possible barring bugs in the Orbit class
+                    str = "---" + EggConverter.DeltaV;     // Don't think this is possible barring bugs in the Orbit class
                 else
                     str = Math.Sqrt(speedsqr).ToSpeed();
             }

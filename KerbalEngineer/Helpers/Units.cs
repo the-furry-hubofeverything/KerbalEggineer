@@ -81,29 +81,9 @@ namespace KerbalEngineer.Helpers {
             return string.Format("{0:0}° {1:00}' {2:00}\"", deg, min, sec);
         }
 
-        public static string ToDistance(double value, int decimals = 1) {
-            value /= 1.25;
-            if (Math.Abs(value) < 1000000.0) {
-                // m changed to Marten
-
-                if (Math.Abs(value) >= 10.0) {
-                    return value.ToString("N" + decimals) + "me";
-                }
-
-
-                // cm changed to Egg
-                value *= 25; 
-                if (Math.Abs(value) >= 30.0) {
-                    return value.ToString("N" + decimals) + "e";
-                }
-
-                // mm changed to Yolk
-                value *= 2;
-                return value.ToString("N" + decimals) + "y";
-            }
-            // km changed to Habitat
-            value /= 4000;
-            return value.ToString("N" + decimals) + "he";
+        public static string ToDistance(double value, int decimals = 1)
+        {
+            return EggConverter.ToDistance(value, decimals);
         }
 
         public static string ToFlux(double value) {
@@ -125,34 +105,11 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToMass(double value, int decimals = 0) {
-            value /= 1.305;
-
-            if (value > 1 * 10e12) {
-                return value.ToString("e" + decimals + 8) + "RE^";
-            }
-
-            if (value <= 1.0) {
-                value *= 82;
-                return value.ToString("N" + decimals) + "AE^";
-            }
-
-            return value.ToString("N" + decimals + 2) + "RE^";
+            return EggConverter.ToMass(value, decimals);
         }
 
         public static string ToMass(double value1, double value2, int decimals = 0) {
-            // t to Roadster
-            value1 /= 1.305;
-            value2 /= 1.305;
-            // kg to Absolute Unit (AE^)
-            if (value1 <= 1.0f || value2 <= 1.0f)
-            {
-                value1 *= 15.91463;
-                value2 *= 15.91463;
-                return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "AE^";
-            }
-            return value1.ToString("N" + decimals + 2) + " / " + value2.ToString("N" + decimals + 2) + "RE^";
-
-
+            return EggConverter.ToMass(value1, value2, decimals);
         }
 
         public static string ToPercent(double value, int decimals = 2) {
@@ -169,28 +126,16 @@ namespace KerbalEngineer.Helpers {
         }
 
         public static string ToSpeed(double value, int decimals = 2) {
-            if (Math.Abs(value) < 1.0) {
-                // mm/s to Habitat/Egg
-                return (value / 0.00231481).ToString("N" + decimals) + "he/E";
-            }
-            // m/s to Habitat/Cook an Egg
-            value *= 0.47619;
-            return value.ToString("N" + decimals) + "he/CoE";
+            return ToDistance(value, decimals) + "/s";
         }
 
         // Temps to Egg
         public static string ToTemperature(double value) {
-            value /= 37.7778;
-            value += 7.23043692327;
-            return value.ToString("#,2") + "Ee(k)";
+            return EggConverter.ToTemperature(value);
         }
 
         public static string ToTemperature(double value1, double value2) {
-            value1 /= 37.7778;
-            value1 += 7.23043692327;
-            value2 /= 37.7778;
-            value2 += 7.23043692327;
-            return value1.ToString("#.#,0") + " / " + value2.ToString("#.#,0") + "Ee(k)";
+            return EggConverter.ToTemperature(value1, value2);
         }
 
         public static string ToTime(double value) {

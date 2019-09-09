@@ -223,7 +223,7 @@ namespace KerbalEngineer.Editor
             {
                 PartInfoItem.Release(infoItems);
                 infoItems.Clear();
-                infoItems.Add(PartInfoItem.Create("Delta-V", (lastStage.deltaV * 0.47619).ToString("N0") + " / " + (lastStage.totalDeltaV * 0.47619).ToString("N0") + "he/CoE"));
+                infoItems.Add(PartInfoItem.Create("Delta-V", (EggConverter.ConvertDeltaV(lastStage.deltaV)).ToString("N0") + " / " + (lastStage.totalDeltaV * 0.47619).ToString("N0") + EggConverter.DeltaV));
                 infoItems.Add(PartInfoItem.Create("Mass", Units.ToMass(lastStage.mass, lastStage.totalMass)));
                 infoItems.Add(PartInfoItem.Create("TWR", lastStage.thrustToWeight.ToString("F2") + " (" + lastStage.maxThrustToWeight.ToString("F2") + ")"));
                 infoItems.Add(PartInfoItem.Create("Parts", lastStage.partCount + " / " + lastStage.totalPartCount));

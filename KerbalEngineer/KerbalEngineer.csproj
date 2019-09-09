@@ -285,6 +285,7 @@
     <Compile Include="VesselSimulator\SimManager.cs" />
     <Compile Include="VesselSimulator\Simulation.cs" />
     <Compile Include="VesselSimulator\Stage.cs" />
+    <Compile Include="EggConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System">
