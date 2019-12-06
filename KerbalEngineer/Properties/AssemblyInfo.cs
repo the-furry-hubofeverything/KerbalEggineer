@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("KerbalEngineer")]
+[assembly: AssemblyTitle("KerbalEggineer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CYBUTEK")]
-[assembly: AssemblyProduct("KerbalEngineer")]
-[assembly: AssemblyCopyright("Copyright © CYBUTEK 2013")]
+[assembly: AssemblyCompany("the-furry-hubofeverything")]
+[assembly: AssemblyProduct("KerbalEggineer")]
+[assembly: AssemblyCopyright("Copyright © CYBUTEK/jrbudda/the-furry-hubofeverything 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

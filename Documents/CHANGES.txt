@@ -1,3 +1,26 @@
+1.1.7.1, 2019-10-18, KSP 1.8.0 #2686
+ - Fix impact marker rendering.
+ - Further improvements to handling old xml settings.
+
+1.1.7.0, 2019-10-16, KSP 1.8.0 #2686
+ - Update to KSP 1.8, target .NET 4.
+ - Fix readout colors reverting to default on GUI size change.
+ - Improve handling of invalid or outdated xml settings.
+ - Removed MiniAVC.dll for now.
+
+1.1.6.0-egg2, 2019-9-9, KSP 1.7.0 #2483 [EGG]
+ - Revised the measurement system to conform to more "metric" standards
+     - Including changes to time, reverting back to normal SI time
+ - Combined all Measuregg modifications to one file
+
+1.1.6.0-egg1, 2019-8-18, KSP 1.7.0 #2483 [EGG]
+ - Fixed temp and mass display errors
+ - Fixed Delta-V using incorrect Measuregg units
+ - Added more puns to UI
+
+1.1.6.0-egg, 2019-8-7, KSP 1.7.0 #2483 [EGG]
+ - Changed the metric system to the Scarf Measuregg systsem
+
 1.1.6.0, 2019-4-10, KSP 1.7.0 #2483
  - Version bump for 1.7.0
  - Show localized biome name

@@ -25,6 +25,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using KSP.UI.Screens;
 
 #endregion
 
@@ -100,7 +101,15 @@ namespace KerbalEngineer.Settings
             {
                 if (item.Name == name)
                 {
-                    return (T)Convert.ChangeType(item.Value, typeof(T));
+                    try
+                    {
+                        return (T)Convert.ChangeType(item.Value, typeof(T));
+                    }
+                    catch
+                    {
+                        item.Value = defaultObject;
+                        return (T)Convert.ChangeType(item.Value, typeof(T));
+                    }
                 }
             }
             return defaultObject;
@@ -132,15 +141,20 @@ namespace KerbalEngineer.Settings
         /// </summary>
         public void Set(string name, object value)
         {
+            int i=-1;
+
             foreach (var item in this.Items)
             {
                 if (item.Name == name)
                 {
-                    item.Value = value;
-                    return;
+                    i = Items.IndexOf(item);
                 }
             }
-            this.Items.Add(new SettingItem(name, value));
+
+            if (i>=0)
+                Items.RemoveAt(i);
+
+            this.Items.Insert(i >=0? i: Items.Count, new SettingItem(name, value));
         }
 
         #endregion
@@ -156,35 +170,23 @@ namespace KerbalEngineer.Settings
             {
                 if (item.Name == name)
                 {
-                    return (T)Convert.ChangeType(item.Value, typeof(T));
+                    try
+                    {
+                        return (T)Convert.ChangeType(item.Value, typeof(T));
+                    }
+                    catch 
+                    {
+                        //invalid xml or something
+                        item.Value = defaultObject;
+                    }
                 }
             }
+
             if (defaultObject != null)
             {
                 this.Items.Add(new SettingItem(name, defaultObject));
             }
             return defaultObject;
-        }
-
-        /// <summary>
-        ///     Gets a setting from its name and inputs it into the output object. Will add the object to the handler if it does
-        ///     not exist.
-        /// </summary>
-        public bool GetSet<T>(string name, ref T outputObject)
-        {
-            foreach (var item in this.Items)
-            {
-                if (item.Name == name)
-                {
-                    outputObject = (T)Convert.ChangeType(item.Value, typeof(T));
-                    return true;
-                }
-            }
-            if (outputObject != null)
-            {
-                this.Items.Add(new SettingItem(name, outputObject));
-            }
-            return false;
         }
 
         #endregion
@@ -199,7 +201,6 @@ namespace KerbalEngineer.Settings
         public void Save(string fileName)
         {
             fileName = Path.Combine(settingsDirectory, fileName);
-
             this.Serialise(fileName);
         }
 
@@ -225,6 +226,11 @@ namespace KerbalEngineer.Settings
         private void Serialise(string fileName)
         {
             this.CreateDirectory(fileName);
+
+            //foreach (var i in Items)
+            //{
+            //    MyLogger.Log("Name " + i.Name + " value " + i.Value.GetType());
+            //}
 
             XmlWriterSettings xmlWriterSettings = new XmlWriterSettings {
                 Encoding = System.Text.Encoding.UTF8,
@@ -280,7 +286,17 @@ namespace KerbalEngineer.Settings
         {
             fileName = Path.Combine(settingsDirectory, fileName);
 
-            return Deserialise(fileName, extraTypes);
+            var items = Deserialise(fileName, extraTypes);
+
+            for (var i = items.Items.Count - 1; i >= 0; i--) {
+                if (items.Items[i].Value is XmlNode[])
+                {
+                    MyLogger.Log("fixed old or invalid setting: " + items.Items[i].Name);
+                    items.Items[i].Value = items.Items[i].Value.ToString();
+                }
+            }
+ 
+            return items;
         }
 
         #endregion
