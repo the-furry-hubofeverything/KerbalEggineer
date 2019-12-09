@@ -28,7 +28,7 @@ namespace KerbalEngineer.UIControls {
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("R", GUILayout.Width(10));
                 float r = GUILayout.HorizontalSlider(color.r, 0f, 1f);
-                if (r != colorPickerSliderValueR) {
+                if (Math.Abs(r - colorPickerSliderValueR) > float.Epsilon) {
                     colorPickerSliderValueR = r;
                     color.r = r;
                     colorPickerStringValueR = ((int)(r * 255)).ToString();
@@ -49,7 +49,7 @@ namespace KerbalEngineer.UIControls {
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("G", GUILayout.Width(10));
                 float g = GUILayout.HorizontalSlider(color.g, 0f, 1f);
-                if (g != colorPickerSliderValueG) {
+                if (Math.Abs(g - colorPickerSliderValueG) > float.Epsilon) {
                     colorPickerSliderValueG = g;
                     color.g = g;
                     colorPickerStringValueG = ((int)(g * 255)).ToString();
@@ -70,7 +70,7 @@ namespace KerbalEngineer.UIControls {
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("B", GUILayout.Width(10));
                 float b = GUILayout.HorizontalSlider(color.b, 0f, 1f);
-                if (b != colorPickerSliderValueB) {
+                if (Math.Abs(b - colorPickerSliderValueB) > float.Epsilon) {
                     colorPickerSliderValueB = b;
                     color.b = b;
                     colorPickerStringValueB = ((int)(b * 255)).ToString();

@@ -44,7 +44,6 @@ namespace KerbalEngineer.TrackingStation {
         #region Fields
 
         private GUIStyle buttonStyle;
-        private int numberOfStackSections;
         private bool resizeRequested;
         private bool showControlBar = true;
         private GUIStyle titleStyle;
@@ -194,7 +193,6 @@ namespace KerbalEngineer.TrackingStation {
                 //}
 
                 if (resizeRequested) {
-                    this.numberOfStackSections = 1;
                     this.windowPosition.width = 0;
                     this.windowPosition.height = 0;
                     this.resizeRequested = false;
